@@ -44,11 +44,11 @@ def app_specific_action(locust):
     def app_dashboards():
         locust.get(app_usage_app_list_endpoint, catch_response=True)
         locust.get(app_usage_app_details_endpoint, catch_response=True)
-        # TODO dashboards
+        # dashboards
         locust.get(f'/rest/app-usage/latest/dashboards?pluginKey={plugin_key}', catch_response=True)
 
     app_common_usage_database_table()
     # app_user_interactions()
     app_custom_fields()
     app_workflows()
-    # app_dashboards()
+    app_dashboards()
