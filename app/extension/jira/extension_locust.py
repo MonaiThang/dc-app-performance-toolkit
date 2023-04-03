@@ -1,10 +1,11 @@
 from locustio.common_utils import init_logger, jira_measure, run_as_specific_user  # noqa F401
+from util.conf import JIRA_SETTINGS
 
 logger = init_logger(app_type='jira')
 
 
 @jira_measure("locust_app_specific_action")
-# @run_as_specific_user(username='admin', password='admin')  # run as specific user
+@run_as_specific_user(username=JIRA_SETTINGS.admin_login, password=JIRA_SETTINGS.admin_password)  # run as specific user
 def app_specific_action(locust):
     plugin_key = 'com.atlassian.app.usage.app-usage-it-backdoor'
     app_usage_app_list_endpoint = '/rest/app-usage/latest/apps'
