@@ -33,7 +33,6 @@ def app_specific_action(webdriver, datasets):
         app_specific_user_login(username=JIRA_SETTINGS.admin_login, password=JIRA_SETTINGS.admin_password)
     measure()
 
-    @print_timing("selenium_app_custom_action")
     def measure():
         def is_sudo():
             return True if '/secure/admin/WebSudoAuthenticate' in page.driver.current_url else False

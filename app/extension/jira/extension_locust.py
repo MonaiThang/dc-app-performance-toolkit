@@ -4,7 +4,6 @@ from util.conf import JIRA_SETTINGS
 logger = init_logger(app_type='jira')
 
 
-@jira_measure("locust_app_specific_action")
 @run_as_specific_user(username=JIRA_SETTINGS.admin_login, password=JIRA_SETTINGS.admin_password)  # run as specific user
 def app_specific_action(locust):
     plugin_key = 'com.atlassian.app.usage.app-usage-it-backdoor'
