@@ -10,24 +10,25 @@ def app_specific_action(locust):
     app_usage_app_list_endpoint = '/rest/app-usage/latest/apps'
     app_usage_app_details_endpoint = f'/rest/app-usage/latest/apps/{plugin_key}'
 
-    @jira_measure("locust_app_common_usage_data_database_table")
-    def app_common_usage_database_table():
+    @jira_measure("locust_app_common_app_list_and_details")
+    def app_list_and_details():
         locust.get(app_usage_app_list_endpoint, catch_response=True)
         locust.get(app_usage_app_details_endpoint, catch_response=True)
-        # common usage data - database tables
+
+    @jira_measure("locust_app_common_usage_data_jql_functions")
+    def app_common_usage_jql_functions():
+        locust.get(f'/rest/app-usage/latest/common-usage-data/jql-functions?pluginKey={plugin_key}', catch_response=True)
+
+    @jira_measure("locust_app_common_usage_data_database_table")
+    def app_common_usage_database_table():
         locust.get(f'/rest/app-usage/latest/common-usage-data/database-tables?pluginKey={plugin_key}', catch_response=True)
 
     @jira_measure("locust_app_user_interactions")
     def app_user_interactions():
-        locust.get(app_usage_app_list_endpoint, catch_response=True)
-        locust.get(app_usage_app_details_endpoint, catch_response=True)
-        # TODO user interactions
         locust.get(f'/rest/app-usage/latest/user-interactions?pluginKey={plugin_key}', catch_response=True)
 
     @jira_measure("locust_app_custom_fields")
     def app_custom_fields():
-        locust.get(app_usage_app_list_endpoint, catch_response=True)
-        locust.get(app_usage_app_details_endpoint, catch_response=True)
         # custom fields - list of custom fields
         locust.get(f'/rest/app-usage/latest/custom-fields?pluginKey={plugin_key}', catch_response=True)
         # custom fields - total projects and issues count
@@ -35,19 +36,16 @@ def app_specific_action(locust):
 
     @jira_measure("locust_app_workflows")
     def app_workflows():
-        locust.get(app_usage_app_list_endpoint, catch_response=True)
-        locust.get(app_usage_app_details_endpoint, catch_response=True)
-        # workflows
         locust.get(f'/rest/app-usage/latest/workflows?pluginKey={plugin_key}', catch_response=True)
 
     @jira_measure("locust_app_dashboards")
     def app_dashboards():
-        locust.get(app_usage_app_list_endpoint, catch_response=True)
-        locust.get(app_usage_app_details_endpoint, catch_response=True)
-        # dashboards
         locust.get(f'/rest/app-usage/latest/dashboards?pluginKey={plugin_key}', catch_response=True)
 
+    app_list_and_details()
     app_common_usage_database_table()
+    app_common_usage_jql_functions()
+    # TODO user interactions
     # app_user_interactions()
     app_custom_fields()
     app_workflows()
