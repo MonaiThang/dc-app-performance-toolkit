@@ -43,10 +43,10 @@ def app_specific_action(locust):
         locust.get(f'/rest/app-usage/latest/dashboards?pluginKey={plugin_key}', catch_response=True)
 
     app_list_and_details()
-    app_common_usage_database_table()
+    # app_common_usage_database_table()
     app_common_usage_jql_functions()
     # TODO user interactions
     # app_user_interactions()
-    app_custom_fields()
-    app_workflows()
-    app_dashboards()
+    # app_custom_fields()
+    # app_workflows()
+    # app_dashboards()
