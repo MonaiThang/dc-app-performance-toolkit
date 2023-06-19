@@ -69,8 +69,12 @@ def app_specific_action(webdriver, datasets):
                 sudo_admin(password=JIRA_SETTINGS.admin_password)
             # Wait for content section visible
             page.wait_until_visible((By.ID, "content"))
-            # Wait for app usage common usage data database table element by CSS selector
-            page.wait_until_visible((By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-database-tables']"))
+            # Wait for app usage common usage data elements by CSS selector
+            page.wait_until_visible(
+                (By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-api-usages-tables']"))
+            page.wait_until_visible(
+                (By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-database-tables']"))
+            page.wait_until_visible((By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-jql-functions']"))
 
         # TODO user interactions
         @print_timing("selenium_app_custom_action:tab_user_interactions")

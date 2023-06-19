@@ -15,13 +15,20 @@ def app_specific_action(locust):
         locust.get(app_usage_app_list_endpoint, catch_response=True)
         locust.get(app_usage_app_details_endpoint, catch_response=True)
 
+    @jira_measure("locust_app_common_usage_data_database_table")
+    def app_common_usage_database_table():
+        locust.get(f'/rest/app-usage/latest/common-usage-data/database-tables?pluginKey={plugin_key}', catch_response=True)
+
     @jira_measure("locust_app_common_usage_data_jql_functions")
     def app_common_usage_jql_functions():
         locust.get(f'/rest/app-usage/latest/common-usage-data/jql-functions?pluginKey={plugin_key}', catch_response=True)
 
-    @jira_measure("locust_app_common_usage_data_database_table")
-    def app_common_usage_database_table():
-        locust.get(f'/rest/app-usage/latest/common-usage-data/database-tables?pluginKey={plugin_key}', catch_response=True)
+    @jira_measure("locust_app_common_usage_data_rest_api")
+    def app_common_usage_rest_api():
+        locust.get(app_usage_app_list_endpoint, catch_response=True)
+        locust.get(app_usage_app_details_endpoint, catch_response=True)
+        # common usage data - REST API
+        locust.get(f'/rest/app-usage/latest/common-usage-data/api-usage?pluginKey={plugin_key}', catch_response=True)
 
     @jira_measure("locust_app_user_interactions")
     def app_user_interactions():
@@ -43,10 +50,11 @@ def app_specific_action(locust):
         locust.get(f'/rest/app-usage/latest/dashboards?pluginKey={plugin_key}', catch_response=True)
 
     app_list_and_details()
-    # app_common_usage_database_table()
+    app_common_usage_database_table()
     app_common_usage_jql_functions()
+    app_common_usage_rest_api()
     # TODO user interactions
     # app_user_interactions()
-    # app_custom_fields()
-    # app_workflows()
-    # app_dashboards()
+    app_custom_fields()
+    app_workflows()
+    app_dashboards()
