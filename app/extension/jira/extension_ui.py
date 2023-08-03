@@ -76,7 +76,6 @@ def app_specific_action(webdriver, datasets):
                 (By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-database-tables']"))
             page.wait_until_visible((By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-jql-functions']"))
 
-        # TODO user interactions
         @print_timing("selenium_app_custom_action:tab_user_interactions")
         def user_interactions_measure():
             page.go_to_url(
@@ -86,7 +85,8 @@ def app_specific_action(webdriver, datasets):
             # Wait for content section visible
             page.wait_until_visible((By.ID, "content"))
             # Wait for app usage user interactions element by CSS selector
-            page.wait_until_visible((By.CSS_SELECTOR, "table[data-testid='userinteractions-table--table']"))
+            page.wait_until_visible((By.CSS_SELECTOR, "button[data-testid='app-usage-expand-dropdown-page-view-tables']"))
+            # TODO user interactions web panels
 
         @print_timing("selenium_app_custom_action:tab_custom_fields")
         def custom_fields_measure():
@@ -124,7 +124,7 @@ def app_specific_action(webdriver, datasets):
         app_list_measure()
         app_details_measure()
         common_usage_data_measure()
-        # user_interactions_measure()
+        user_interactions_measure()
         custom_fields_measure()
         workflows_measure()
         dashboards_measure()

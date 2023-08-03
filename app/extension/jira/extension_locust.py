@@ -25,14 +25,15 @@ def app_specific_action(locust):
 
     @jira_measure("locust_app_common_usage_data_rest_api")
     def app_common_usage_rest_api():
-        locust.get(app_usage_app_list_endpoint, catch_response=True)
-        locust.get(app_usage_app_details_endpoint, catch_response=True)
-        # common usage data - REST API
         locust.get(f'/rest/app-usage/latest/common-usage-data/api-usage?pluginKey={plugin_key}', catch_response=True)
 
-    @jira_measure("locust_app_user_interactions")
-    def app_user_interactions():
-        locust.get(f'/rest/app-usage/latest/user-interactions?pluginKey={plugin_key}', catch_response=True)
+    @jira_measure("locust_app_user_interactions_page_views")
+    def app_user_interactions_page_views():
+        locust.get(f'/rest/app-usage/latest/user-interactions/page-views?pluginKey={plugin_key}', catch_response=True)
+
+    @jira_measure("locust_app_user_interactions_web_panels")
+    def app_user_interactions_web_panels():
+        locust.get(f'/rest/app-usage/latest/user-interactions/web-panels?pluginKey={plugin_key}', catch_response=True)
 
     @jira_measure("locust_app_custom_fields")
     def app_custom_fields():
@@ -53,8 +54,8 @@ def app_specific_action(locust):
     app_common_usage_database_table()
     app_common_usage_jql_functions()
     app_common_usage_rest_api()
-    # TODO user interactions
-    # app_user_interactions()
+    app_user_interactions_page_views()
+    # app_user_interactions_web_panels()
     app_custom_fields()
     app_workflows()
     app_dashboards()
