@@ -37,9 +37,9 @@ def app_specific_action(locust):
 
     @jira_measure("locust_app_user_interactions_web_panels_click_api")
 	def app_user_interactions_web_panels_click_api():
-		body = {"pluginKey": "com.atlassian.app.usage.app-usage-it-backdoor", "resourceLocation": "templates/web-panel/sample-web-panel.vm"}  # include parsed variables to POST request body
-		headers = {'content-type': 'application/json'}
-		locust.post('/rest/app-usage/latest/user-interactions/web-panels/clicks', body, headers, catch_response=True)
+	    body = {"pluginKey": "com.atlassian.app.usage.app-usage-it-backdoor", "resourceLocation": "templates/web-panel/sample-web-panel.vm"}  # include parsed variables to POST request body
+	    headers = {'content-type': 'application/json'}
+	    locust.post('/rest/app-usage/latest/user-interactions/web-panels/clicks', body, headers, catch_response=True)
 
     @jira_measure("locust_app_custom_fields")
     def app_custom_fields():
