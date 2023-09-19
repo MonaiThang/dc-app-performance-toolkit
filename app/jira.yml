@@ -42,7 +42,7 @@ services:
     prepare:
       - python util/pre_run/environment_checker.py
       - python util/pre_run/check_for_updates.py
-      - python util/data_preparation/jira_prepare_data.py # required for first run, can skip after first run to save time
+#      - python util/data_preparation/jira_prepare_data.py # required for first run, can skip after first run to save time
     shutdown:
 #      - python util/post_run/jmeter_post_check.py
       - python util/jtl_convertor/jtls-to-csv.py kpi.jtl selenium.jtl
