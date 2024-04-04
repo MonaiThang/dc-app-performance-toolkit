@@ -59,13 +59,13 @@ execution:
     concurrency: ${concurrency}
     hold-for: ${test_duration}
     ramp-up: ${ramp-up}
-  - scenario: selenium
-    executor: selenium
-    runner: pytest
-    hold-for: ${test_duration}
+#  - scenario: selenium
+#    executor: selenium
+#    runner: pytest
+#    hold-for: ${test_duration}
 scenarios:
-  selenium:
-    script: selenium_ui/jira_ui.py
+#  selenium:
+#    script: selenium_ui/jira_ui.py
   locust:
     script: locustio/jira/locustfile.py
   jmeter:
@@ -117,9 +117,9 @@ modules:
       server.rmi.ssl.disable: true
       java.rmi.server.hostname: localhost
       httpsampler.ignore_failed_embedded_resources: "true"
-  selenium:
-    chromedriver:
-      version: "125.0.6422.141" # Supports Chrome version 125. You can refer to https://googlechromelabs.github.io/chrome-for-testing
+#  selenium:
+#    chromedriver:
+#      version: "125.0.6422.141" # Supports Chrome version 125. You can refer to https://googlechromelabs.github.io/chrome-for-testing
 reporting:
 - data-source: sample-labels
   module: junit-xml
