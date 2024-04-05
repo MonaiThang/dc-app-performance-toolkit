@@ -542,11 +542,11 @@ def view_dashboard(locust):
                 catch_response=True)
 
     # 615 /rest/gadget/1.0/issueTable/jql
-    locust.get('/rest/gadget/1.0/issueTable/jql?num=10&tableContext=jira.table.cols.dashboard&addDefault=true'
-               '&enableSorting=true&paging=true&showActions=true'
-               '&jql=assignee+%3D+currentUser()+AND+resolution+%3D+unresolved+ORDER+BY+priority+'
-               'DESC%2C+created+ASC&sortBy=&startIndex=0&_=1588507042019',
-               catch_response=True)
+    # locust.get('/rest/gadget/1.0/issueTable/jql?num=10&tableContext=jira.table.cols.dashboard&addDefault=true'
+    #            '&enableSorting=true&paging=true&showActions=true'
+    #            '&jql=assignee+%3D+currentUser()+AND+resolution+%3D+unresolved+ORDER+BY+priority+'
+    #            'DESC%2C+created+ASC&sortBy=&startIndex=0&_=1588507042019',
+    #            catch_response=True)
 
     # 620 /plugins/servlet/gadgets/dashboard-diagnostics
     r = locust.post('/plugins/servlet/gadgets/dashboard-diagnostics',
