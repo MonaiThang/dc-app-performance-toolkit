@@ -483,7 +483,7 @@ def edit_issue(locust):
                     catch_response=True)
 
         # 745 /rest/bamboo/latest/deploy
-        locust.get(f'/rest/bamboo/latest/deploy/{project_key}/{issue_key}?_{timestamp_int()}', catch_response=True)
+        # locust.get(f'/rest/bamboo/latest/deploy/{project_key}/{issue_key}?_{timestamp_int()}', catch_response=True)
 
         # 750 /secure/AjaxIssueEditAction!default.jspa
         locust.get(f'/secure/AjaxIssueEditAction!default.jspa?decorator=none&issueId='
@@ -662,7 +662,7 @@ def add_comment(locust):
                     catch_response=True)
 
         # 865 /rest/bamboo/latest/deploy/${issue_project_key}/{issue_key}
-        locust.get(f'/rest/bamboo/latest/deploy/{project_key}/{issue_key}?_={timestamp_int()}', catch_response=True)
+        # locust.get(f'/rest/bamboo/latest/deploy/{project_key}/{issue_key}?_={timestamp_int()}', catch_response=True)
 
         # 870 /secure/AjaxIssueEditAction!default.jspa
         locust.get(f'/secure/AjaxIssueEditAction!default.jspa?'
