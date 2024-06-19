@@ -20,7 +20,7 @@ settings:
     WEBDRIVER_VISIBLE: False
     JMETER_VERSION: 5.5
     LANGUAGE: en_US.utf8
-    allow_analytics: Yes               # Allow sending basic run analytics to Atlassian. These analytics help us to understand how the tool is being used and help us to continue to invest in this tooling. For more details please see our README.
+    allow_analytics: No               # Allow sending basic run analytics to Atlassian. These analytics help us to understand how the tool is being used and help us to continue to invest in this tooling. For more details please see our README.
     environment_compliance_check: True # Pre-test environment compliance validation. Set to "False" to skip it.
     # Action percentage for Jmeter and Locust load executors
     create_issue: 4
@@ -43,10 +43,10 @@ services:
     prepare:
       - python util/pre_run/environment_checker.py
       - python util/pre_run/environment_compliance_check.py jira
-      - python util/data_preparation/jira_prepare_data.py
+#      - python util/data_preparation/jira_prepare_data.py
     shutdown:
-      - python util/post_run/jmeter_post_check.py
-      - python util/jtl_convertor/jtls-to-csv.py kpi.jtl selenium.jtl
+#      - python util/post_run/jmeter_post_check.py
+      - python util/jtl_convertor/jtls-to-csv.py kpi.jtl # selenium.jtl
     post-process:
       - python util/analytics/analytics.py jira
       - python util/post_run/cleanup_results_dir.py
